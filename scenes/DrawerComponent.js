@@ -1,20 +1,75 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {connect} from 'react-redux';
+import {Text, TouchableOpacity, ImageBackground, View} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import styled from 'styled-components';
+import Background from '../assets/images/background.jpg';
 
-export const DrawerComponent = () => {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>
-        Hi,{'\n'}name{'\n'}
-      </Text>
-      <TouchableOpacity
-        onPress={() => {
-          Actions.exercise();
-          Actions.drawerClose();
-        }}>
-        <Text>Move to exercise</Text>
-      </TouchableOpacity>
-    </View>
-  );
+class DrawerComponent extends React.Component {
+  render() {
+    return (
+      <Drawer source={Background}>
+        <NameWrapper>
+          <Name>
+            Hi,{'\n'}
+            {this.props.name}
+          </Name>
+        </NameWrapper>
+        <DrawerItem
+          onPress={() => {
+            Actions.swipe_tabs();
+            Actions.drawerClose();
+          }}>
+          <ItemText>Move to exercise</ItemText>
+        </DrawerItem>
+      </Drawer>
+    );
+  }
+}
+
+const Drawer = styled(ImageBackground)({
+  flex: 1,
+  alignItems: 'center',
+});
+
+const NameWrapper = styled(View)({
+  width: '80%',
+  height: 100,
+  backgroundColor: '#ffffff',
+  opacity: 0.9,
+  marginTop: 50,
+  borderRadius: 15,
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+const Name = styled(Text)({
+  fontSize: 20,
+  fontWeight: '700',
+});
+
+const DrawerItem = styled(TouchableOpacity)({
+  width: '80%',
+  height: 50,
+  backgroundColor: '#ffffff',
+  opacity: 0.9,
+  borderRadius: 15,
+  position: 'absolute',
+  top: 200,
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const ItemText = styled(Text)({
+  fontSize: 18,
+  fontWeight: '700',
+  width: 'auto',
+});
+
+const mapStateToProps = state => {
+  return {
+    name: state.name,
+  };
 };
+
+export default connect(mapStateToProps)(DrawerComponent);
