@@ -2,15 +2,12 @@ import React from 'react';
 import {View, Image, TouchableOpacity, TextInput, Text} from 'react-native';
 import styled from 'styled-components';
 import Cat from '../assets/images/cat.png';
-import Back from '../assets/images/back.png';
-import {Actions} from 'react-native-router-flux';
+import {BackButton} from './components/BackButton';
 
 export const IntroductionComponent = () => {
   return (
     <Wrapper>
-      <ButtonWrapper onPress={() => Actions.pop()}>
-        <BackButton source={Back} resizeMode="stretch" />
-      </ButtonWrapper>
+      <BackButton />
       <Form>
         <Input placeholder="Enter new name..." />
         <Submit>
@@ -27,17 +24,6 @@ const Wrapper = styled(View)({
   backgroundColor: '#e8e0d5',
   justifyContent: 'space-between',
   alignItems: 'flex-end',
-});
-
-const ButtonWrapper = styled(TouchableOpacity)({
-  width: '100%',
-  height: 60,
-  justifyContent: 'center',
-});
-
-const BackButton = styled(Image)({
-  width: 40,
-  height: 40,
 });
 
 const Form = styled(View)({
