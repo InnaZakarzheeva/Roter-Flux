@@ -1,4 +1,4 @@
-import {getBreeds} from '../apiRequest';
+import {getBreeds} from '../services/api/request';
 import {types} from './types/index';
 
 export const loadBreeds = () => dispatch => {
