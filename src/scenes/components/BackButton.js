@@ -13,7 +13,7 @@ export const BackButton = () => {
 };
 
 const ButtonWrapper = styled(TouchableOpacity)({
-  width: '100%',
+  width: '30%',
   height: 60,
   justifyContent: 'center',
 });

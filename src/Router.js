@@ -2,7 +2,7 @@
 import React from 'react';
 import {Router, Scene, Drawer, Tabs, Actions} from 'react-native-router-flux';
 import MainComponent from './scenes/MainComponent';
-import {FirstSwipeComponent} from './scenes/FirstSwipeComponent';
+import SearchComponent from './scenes/SearchComponent';
 import {SecondSwipeComponent} from './scenes/SecondSwipeComponent';
 import DrawerComponent from './scenes/DrawerComponent';
 import {ProfileScreen} from './scenes/ProfileScreen';
@@ -41,7 +41,7 @@ const RouterComponent = () => (
         />
       </Tabs>
       <Tabs key="swipe_tabs" swipeEnabled tabBarPosition="top" hideTabBar>
-        <Scene key="first_swipe" component={FirstSwipeComponent} hideNavBar />
+        <Scene key="first_swipe" component={SearchComponent} hideNavBar />
         <Scene key="second_swipe" component={SecondSwipeComponent} hideNavBar />
       </Tabs>
       <Scene key="introduction" component={IntroductionComponent} />

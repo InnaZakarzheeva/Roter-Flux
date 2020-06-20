@@ -10,7 +10,7 @@ import {BreedItem} from './components/BreedItem';
 
 const MainComponent = props => {
   const [spinValue] = useState(new Animated.Value(1));
-  const [isAnimated, setIsAnimated] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(true);
 
   useEffect(() => {
     props.loadBreeds();
@@ -21,7 +21,7 @@ const MainComponent = props => {
       useNativeDriver: true,
     }).start();
     setTimeout(() => {
-      setIsAnimated(true);
+      setIsAnimated(false);
     }, 5000);
   }, []);
 
@@ -32,7 +32,7 @@ const MainComponent = props => {
 
   return (
     <Wrapper>
-      {!isAnimated && props.isLoading ? (
+      {isAnimated ? (
         <Animated.Image
           source={CatCircle}
           style={{
@@ -65,7 +65,6 @@ const Wrapper = styled(View)({
 const mapStateToProps = state => {
   return {
     breeds: state.breeds,
-    isLoading: state.isLoading,
   };
 };
 

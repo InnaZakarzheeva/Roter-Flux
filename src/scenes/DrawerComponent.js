@@ -21,7 +21,7 @@ class DrawerComponent extends React.Component {
             Actions.swipe_tabs();
             Actions.drawerClose();
           }}>
-          <ItemText>Move to exercise</ItemText>
+          <ItemText>Search</ItemText>
         </DrawerItem>
       </Drawer>
     );

@@ -3,8 +3,10 @@ import {types} from '../actions/types/index';
 const initialState = {
   name: 'Name',
   breeds: [],
-  isLoading: true,
+  searchPayload: [],
+  isLoading: false,
   isError: false,
+  searchName: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +15,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         name: action.name,
+      };
+
+    case types.LOADING_DATA:
+      return {
+        ...state,
+        isLoading: true,
+        searchName: action.breed,
       };
 
     case types.SUCCESSFUL_LOAD_DATA:
@@ -27,7 +36,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isError: true,
+        isLoading: false,
       };
+
+    case types.SEARCH_BY_BREED:
+      return {
+        ...state,
+        searchPayload: action.payload,
+        isLoading: false,
+      };
+
     default:
       return state;
   }
