@@ -12,13 +12,17 @@ import thunk from 'redux-thunk';
 import Router from './src/Router';
 import reducer from './src/reducer/index';
 import {Provider} from 'react-redux';
+import {setUser} from './src/services/realm/controllers/user';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
-const App = () => (
-  <Provider store={store}>
-    <Router />
-  </Provider>
-);
+const App = () => {
+  setUser();
+  return (
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  );
+};
 
 export default App;

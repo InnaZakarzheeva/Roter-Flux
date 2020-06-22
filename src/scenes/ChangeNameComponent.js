@@ -27,7 +27,7 @@ const ChangeNameComponent = props => {
             <SubmitText>Change</SubmitText>
           </Submit>
         ) : (
-          <Text>Successfully updated!</Text>
+          <StatusText>Successfully updated!</StatusText>
         )}
       </Form>
       <ImageCat source={Cat} resizeMode="stretch" />
@@ -79,6 +79,15 @@ const ImageCat = styled(Image)({
   width: 200,
   height: 300,
   alignSelf: 'flex-end',
+});
+
+const StatusText = styled(Text)({
+  fontSize: 16,
+  fontWeight: '700',
+  color: '#228B22',
+  fontStyle: 'italic',
+  textShadowColor: '#32CD32',
+  textShadowRadius: 5,
 });
 
 export default connect(

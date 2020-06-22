@@ -12,25 +12,33 @@ import BackgroundImage from '../assets/images/background.jpg';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {changeName} from '../actions/index';
+import {getUser} from '../services/realm/controllers/user';
 
 const {width, height} = Dimensions.get('screen');
 
 const ProfileScreen = props => {
   const [name, setName] = useState('');
+  const userName = getUser().userName;
   return (
     <View>
       <Background source={BackgroundImage} resizeMode="cover">
         <Form>
-          <Title>Whats your name?</Title>
-          <Input
-            textContentType="name"
-            placeholder="Name"
-            value={name}
-            onChangeText={text => setName(text)}
-          />
-          <Button onPress={() => props.changeName(name)}>
-            <ButtonText>Save</ButtonText>
-          </Button>
+          {userName.length ? (
+            <Name>Hello, {userName}</Name>
+          ) : (
+            <>
+              <Title>Whats your name?</Title>
+              <Input
+                textContentType="name"
+                placeholder="Name"
+                value={name}
+                onChangeText={text => setName(text)}
+              />
+              <Button onPress={() => props.changeName(name)}>
+                <ButtonText>Save</ButtonText>
+              </Button>
+            </>
+          )}
           <Button onPress={() => Actions.introduction()}>
             <ButtonText>Change name</ButtonText>
           </Button>
@@ -87,6 +95,15 @@ const ButtonText = styled(Text)({
   color: '#ff7517',
   fontSize: 16,
   fontWeight: '700',
+});
+
+const Name = styled(Text)({
+  width: '80%',
+  fontSize: 32,
+  fontWeight: '700',
+  fontStyle: 'italic',
+  textShadowColor: '#ff7517',
+  textShadowRadius: 5,
 });
 
 const mapStateToProps = state => {

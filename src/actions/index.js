@@ -1,5 +1,6 @@
 import {getBreeds, search} from '../services/api/request';
 import {types} from './types/index';
+import {setUserName} from '../services/realm/controllers/user';
 
 let page = 0;
 
@@ -41,6 +42,7 @@ export const searchByBreed = breed => dispatch => {
 };
 
 export const changeName = name => dispatch => {
+  setUserName(name);
   dispatch({
     type: types.CHANGE_NAME,
     name,
