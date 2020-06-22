@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,16 +10,27 @@ import {
 import {Actions} from 'react-native-router-flux';
 import BackgroundImage from '../assets/images/background.jpg';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+import {changeName} from '../actions/index';
 
 const {width, height} = Dimensions.get('screen');
 
-export const ProfileScreen = () => {
+const ProfileScreen = props => {
+  const [name, setName] = useState('');
   return (
     <View>
       <Background source={BackgroundImage} resizeMode="cover">
         <Form>
           <Title>Whats your name?</Title>
-          <Input textContentType="name" placeholder="Name" />
+          <Input
+            textContentType="name"
+            placeholder="Name"
+            value={name}
+            onChangeText={text => setName(text)}
+          />
+          <Button onPress={() => props.changeName(name)}>
+            <ButtonText>Save</ButtonText>
+          </Button>
           <Button onPress={() => Actions.introduction()}>
             <ButtonText>Change name</ButtonText>
           </Button>
@@ -43,13 +54,14 @@ const Form = styled(View)({
   opacity: 0.9,
   borderRadius: 20,
   alignItems: 'center',
+  justifyContent: 'space-evenly',
 });
 
 const Title = styled(Text)({
   fontSize: 22,
   fontWeight: 'bold',
-  height: 100,
-  lineHeight: 100,
+  height: 50,
+  lineHeight: 50,
 });
 
 const Input = styled(TextInput)({
@@ -67,8 +79,6 @@ const Button = styled(TouchableOpacity)({
   borderColor: '#000000',
   borderWidth: 2,
   borderRadius: 5,
-  position: 'absolute',
-  bottom: 50,
   justifyContent: 'center',
   alignItems: 'center',
 });
@@ -78,3 +88,14 @@ const ButtonText = styled(Text)({
   fontSize: 16,
   fontWeight: '700',
 });
+
+const mapStateToProps = state => {
+  return {
+    name: state.name,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {changeName},
+)(ProfileScreen);

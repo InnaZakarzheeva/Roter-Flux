@@ -57,7 +57,7 @@ const Title = styled(Text)({
 });
 
 const Search = styled(TextInput)({
-  width: '85%',
+  width: '90%',
   borderBottomWidth: 2,
   fontSize: 16,
   fontWeight: '700',

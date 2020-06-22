@@ -1,18 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Image, TouchableOpacity, TextInput, Text} from 'react-native';
 import styled from 'styled-components';
 import Cat from '../assets/images/cat.png';
 import {BackButton} from './components/BackButton';
+import {connect} from 'react-redux';
+import {changeName} from '../actions/index';
 
-export const IntroductionComponent = () => {
+const ChangeNameComponent = props => {
+  const [name, setName] = useState('');
+  const [isChanged, setChanged] = useState(false);
   return (
     <Wrapper>
       <BackButton />
       <Form>
-        <Input placeholder="Enter new name..." />
-        <Submit>
-          <SubmitText>Change</SubmitText>
-        </Submit>
+        <Input
+          placeholder="Enter new name..."
+          value={name}
+          onChangeText={text => setName(text)}
+        />
+        {!isChanged ? (
+          <Submit
+            onPress={() => {
+              props.changeName(name);
+              setChanged(true);
+            }}>
+            <SubmitText>Change</SubmitText>
+          </Submit>
+        ) : (
+          <Text>Successfully updated!</Text>
+        )}
       </Form>
       <ImageCat source={Cat} resizeMode="stretch" />
     </Wrapper>
@@ -23,7 +39,7 @@ const Wrapper = styled(View)({
   flex: 1,
   backgroundColor: '#e8e0d5',
   justifyContent: 'space-between',
-  alignItems: 'flex-end',
+  paddingLeft: 20,
 });
 
 const Form = styled(View)({
@@ -62,4 +78,10 @@ const SubmitText = styled(Text)({
 const ImageCat = styled(Image)({
   width: 200,
   height: 300,
+  alignSelf: 'flex-end',
 });
+
+export default connect(
+  null,
+  {changeName},
+)(ChangeNameComponent);

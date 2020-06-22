@@ -16,13 +16,13 @@ const MainComponent = props => {
     props.loadBreeds();
     Animated.timing(spinValue, {
       toValue: 0,
-      duration: 5000,
+      duration: 3000,
       easing: Easing.linear,
       useNativeDriver: true,
     }).start();
     setTimeout(() => {
       setIsAnimated(false);
-    }, 5000);
+    }, 3000);
   }, []);
 
   const RotateData = spinValue.interpolate({

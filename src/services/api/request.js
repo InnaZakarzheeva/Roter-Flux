@@ -7,7 +7,7 @@ export const getBreeds = page => {
       .get(`${THE_CAT_API}/breeds`, {
         params: {
           page,
-          limit: 10,
+          limit: 20,
         },
       })
       .then(resp => {

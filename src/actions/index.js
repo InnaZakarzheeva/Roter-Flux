@@ -39,3 +39,10 @@ export const searchByBreed = breed => dispatch => {
       });
     });
 };
+
+export const changeName = name => dispatch => {
+  dispatch({
+    type: types.CHANGE_NAME,
+    name,
+  });
+};

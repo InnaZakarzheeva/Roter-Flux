@@ -5,9 +5,9 @@ import MainComponent from './scenes/MainComponent';
 import SearchComponent from './scenes/SearchComponent';
 import {SecondSwipeComponent} from './scenes/SecondSwipeComponent';
 import DrawerComponent from './scenes/DrawerComponent';
-import {ProfileScreen} from './scenes/ProfileScreen';
+import ProfileScreen from './scenes/ProfileScreen';
 import Burger from './assets/images/burger1.jpg';
-import {IntroductionComponent} from './scenes/IntroductionComponent';
+import ChangeNameComponent from './scenes/ChangeNameComponent';
 import {Image, TouchableOpacity} from 'react-native';
 
 const RouterComponent = () => (
@@ -44,7 +44,7 @@ const RouterComponent = () => (
         <Scene key="first_swipe" component={SearchComponent} hideNavBar />
         <Scene key="second_swipe" component={SecondSwipeComponent} hideNavBar />
       </Tabs>
-      <Scene key="introduction" component={IntroductionComponent} />
+      <Scene key="introduction" component={ChangeNameComponent} />
     </Scene>
   </Router>
 );
